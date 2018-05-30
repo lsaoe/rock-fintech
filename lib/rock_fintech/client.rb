@@ -32,9 +32,7 @@ module RockFintech
     private
 
     def recursive_include_api(module_chain)
-      modules = eval("#{module_chain}.constants").each{ |constant|
-        eval("#{module_chain}::#{constant}").class.kind_of?(Module)
-      }
+      modules = eval("#{module_chain}.constants").each{ |constant| eval("#{module_chain}::#{constant}").class.kind_of?(Module) }
 
       if modules.empty?
         self.class.send(:include, eval(module_chain))
